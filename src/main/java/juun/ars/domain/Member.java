@@ -8,10 +8,10 @@ import java.util.List;
 
 @Entity
 @Getter
-@Setter
 @Table(name ="member")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Builder
+@Setter
 @AllArgsConstructor
 public class Member {
 
@@ -25,18 +25,11 @@ public class Member {
     @Column
     private String email; // 이메일 (소셜 로그인때 필요)
 
-    @OneToMany(mappedBy = "member") //주인 필드 명
-    private List<Problem> problemList = new ArrayList<>(); // 푼 문제 정보
-
-    @OneToMany(mappedBy = "member")
-    private List<Review> reviewList = new ArrayList<>();
 
     public Member(String username, String password, String email, List<Problem> problemList, List<Review> reviewList) {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.problemList = problemList;
-        this.reviewList = reviewList;
     }
 
     public Member update(String username) {

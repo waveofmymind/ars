@@ -10,7 +10,7 @@ import static java.util.Collections.singletonList;
 
 @Entity
 @Getter
-
+@Setter
 @Table(name = "problem")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
@@ -18,6 +18,7 @@ import static java.util.Collections.singletonList;
 public class Problem extends BaseTimeEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "problem_id")
     private Long id;
 
     @ManyToOne

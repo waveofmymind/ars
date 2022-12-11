@@ -10,6 +10,7 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Builder
+@Setter
 @Table(name = "review")
 public class Review extends BaseTimeEntity{
 

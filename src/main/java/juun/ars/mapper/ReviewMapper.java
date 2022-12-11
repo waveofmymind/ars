@@ -7,7 +7,7 @@ import juun.ars.dto.ReviewRequestDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface ReviewMapper {
 
     @Mapping(target = "problem", source = "problem")

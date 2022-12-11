@@ -13,6 +13,7 @@ public class ProblemRequestDto {
 
     private String link;
 
+    @Builder.Default
     private int step = 1;
 
     private String content;
