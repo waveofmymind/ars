@@ -18,8 +18,7 @@ public class ProblemOnlyDto {
 
     private String link;
 
-    private int step;
+    private int step = 1;
 
-    private LocalDateTime modifiedDate;
 
 }

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/member")
 @RequiredArgsConstructor
-public class TestController {
+public class MemberController {
 
     private final MemberRepository memberRepository;
 
