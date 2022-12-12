@@ -1,10 +1,14 @@
 package juun.ars.details;
 
 import juun.ars.domain.Member;
+import juun.ars.dto.MemberDto;
 import lombok.Data;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Map;
 
 // Security Session 영역 (Security ContextHolder) => Authentication 객체가 필요함 => 해당 객체 안에 유저 정보가 들어가 있음 => UserDetails 타입

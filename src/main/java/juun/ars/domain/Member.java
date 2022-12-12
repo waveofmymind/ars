@@ -27,18 +27,14 @@ public class Member extends BaseTimeEntity implements Serializable {
     private String provider;
     private String providerId;
 
-    @OneToMany(mappedBy = "member")
-    private List<Problem> problemList = new ArrayList<>();
 
     private String role;
 
-
     @Builder
-    public Member(String username, String password, String email, List<Problem> problemList, String role, String provider, String providerId) {
+    public Member(String username, String password, String email, String role, String provider, String providerId) {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.problemList = problemList;
         this.role = role;
         this.provider = provider;
         this.providerId = providerId;

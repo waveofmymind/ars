@@ -8,6 +8,7 @@ import juun.ars.mapper.ReviewMapper;
 import juun.ars.repository.ProblemRepository;
 import juun.ars.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +16,7 @@ import javax.persistence.EntityNotFoundException;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ReviewService {
 
     private final ReviewRepository reviewRepository;

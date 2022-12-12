@@ -1,4 +1,4 @@
-package juun.ars.config;
+package juun.ars.config.auth;
 
 import juun.ars.config.auth.CustomOAuth2MemberService;
 import juun.ars.domain.Role;
@@ -61,5 +61,7 @@ public class OAuthSecurityConfig {
                 .oauth2Login()
                 .userInfoEndpoint()
                 .userService(customOAuth2MemberService);
+
+        return http.build();
     }
 }

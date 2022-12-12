@@ -18,6 +18,7 @@ public class ProblemOnlyDto {
 
     private String link;
 
+    @Builder.Default
     private int step = 1;
 
 

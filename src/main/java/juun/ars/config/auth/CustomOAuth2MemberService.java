@@ -3,23 +3,20 @@ package juun.ars.config.auth;
 import juun.ars.config.auth.provider.GitUserInfo;
 import juun.ars.config.auth.provider.NaverUserInfo;
 import juun.ars.config.auth.provider.OAuth2UserInfo;
+import juun.ars.details.PrincipalDetails;
 import juun.ars.domain.Member;
 import juun.ars.domain.Role;
-import juun.ars.domain.UserProfile;
 import juun.ars.repository.MemberRepository;
 import juun.ars.service.MemberService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
-import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
-import java.util.Collections;
 import java.util.Map;
 
 @RequiredArgsConstructor
@@ -29,7 +26,6 @@ public class CustomOAuth2MemberService implements OAuth2UserService<OAuth2UserRe
     private final MemberRepository memberRepository;
     private final HttpSession httpSession;
     private final MemberService memberService;
-
 
 
     // 함수 종료시 @AuthenticationPrincipal 어노테이션이 만들어진다.
@@ -49,39 +45,38 @@ public class CustomOAuth2MemberService implements OAuth2UserService<OAuth2UserRe
         System.out.println("oAuth2User.getName() = " + oAuth2User.getName());
 
         OAuth2UserInfo oAuth2UserInfo = null;
-        if(userRequest.getClientRegistration().getRegistrationId().equals("github")){
+        if (userRequest.getClientRegistration().getRegistrationId().equals("github")) {
             System.out.println("깃 로그인 요청");
             oAuth2UserInfo = new GitUserInfo((oAuth2User.getAttributes()));
-        } else if(userRequest.getClientRegistration().getRegistrationId().equals("naver")){
+        } else if (userRequest.getClientRegistration().getRegistrationId().equals("naver")) {
             System.out.println("네이버 로그인 요청");
-            oAuth2UserInfo = new NaverUserInfo((Map)oAuth2User.getAttributes().get("response"));
-
-
-
-        String provider = oAuth2UserInfo.getProvider(); // google
-        String providerId = oAuth2UserInfo.getProviderId();
-        String username = provider + "_" + providerId; // google_1923912312312
-        String password = "dodokong";
-        String email = oAuth2UserInfo.getEmail();
-        String role = Role.USER.getValue();
-
-
-
-        Member member = memberRepository.findByUsername(username).get();
-        if (member == null) {
-            System.out.println("최초 가입");
-            member = Member.builder()
-                    .username(username)
-                    .password(password)
-                    .email(email)
-                    .role(role)
-                    .provider(provider)
-                    .providerId(providerId)
-                    .build();
-            memberService.joinUserWithMember(member);
-        }else {
-            System.out.println("이미 가입한 적이 있습니다.");
+            oAuth2UserInfo = new NaverUserInfo((Map) oAuth2User.getAttributes().get("response"));
         }
-        return new PrincipalDetails(member, oAuth2User.getAttributes());
+
+            String provider = oAuth2UserInfo.getProvider(); // google
+            String providerId = oAuth2UserInfo.getProviderId();
+            String username = provider + "_" + providerId; // google_1923912312312
+            String password = "dodokong";
+            String email = oAuth2UserInfo.getEmail();
+            String role = Role.USER.getValue();
+
+
+
+            Member member = memberRepository.findByUsername(username);
+            if (member == null) {
+                System.out.println("최초 가입");
+                member = Member.builder()
+                        .username(username)
+                        .password(password)
+                        .email(email)
+                        .role(role)
+                        .provider(provider)
+                        .providerId(providerId)
+                        .build();
+                memberService.joinUserWithMember(member);
+            }else {
+                System.out.println("이미 가입한 적이 있습니다.");
+            }
+            return new PrincipalDetails(member, oAuth2User.getAttributes());
+        }
     }
-}

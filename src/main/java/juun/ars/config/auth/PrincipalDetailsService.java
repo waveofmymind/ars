@@ -1,5 +1,6 @@
 package juun.ars.config.auth;
 
+import juun.ars.details.PrincipalDetails;
 import juun.ars.domain.Member;
 import juun.ars.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,9 @@ public class PrincipalDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Member member = memberRepository.findByUsername(username);
-        if (member != null){
+        if (member != null) {
             return new PrincipalDetails(member);
         }
         return null;
     }
+}
