@@ -14,7 +14,7 @@ spring:
             redirect-uri: "{baseUrl}/{action}/oauth2/code/{registrationId}"
             authorization_grant_type: authorization_code
             scope: name,email
-            client-name: Naver3
+            client-name: Naver
         provider:
           naver:
             authorization_uri: https://nid.naver.com/oauth2.0/authorize

@@ -3,37 +3,50 @@ package juun.ars.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "member")
 @Getter
-@Table(name ="member")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Builder
-@Setter
-@AllArgsConstructor
-public class Member {
+public class Member extends BaseTimeEntity implements Serializable {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "member_id")
     private Long id;
-    @Column(unique = true)
-    private String username; // 닉네임
+
     @Column
-    private String password; // 패스워드
+    private String username;
     @Column
-    private String email; // 이메일 (소셜 로그인때 필요)
+    private String password;
+    @Column
+    private String email;
+    private String provider;
+    private String providerId;
+
+    @OneToMany(mappedBy = "member")
+    private List<Problem> problemList = new ArrayList<>();
+
+    private String role;
 
 
-    public Member(String username, String password, String email, List<Problem> problemList, List<Review> reviewList) {
+    @Builder
+    public Member(String username, String password, String email, List<Problem> problemList, String role, String provider, String providerId) {
         this.username = username;
         this.password = password;
         this.email = email;
+        this.problemList = problemList;
+        this.role = role;
+        this.provider = provider;
+        this.providerId = providerId;
     }
 
-    public Member update(String username) {
+    public Member update(String username){
         this.username = username;
         return this;
     }
+
 }

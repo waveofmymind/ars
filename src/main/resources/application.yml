@@ -12,6 +12,8 @@ spring:
     properties:
       hibernate.format_sql: true
       dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  profiles:
+    include: oauth
 logging:
   level:
     org:
@@ -22,5 +24,4 @@ logging:
     user:
       name: user
       password: 1234
-  profiles:
-    include: oauth
+
