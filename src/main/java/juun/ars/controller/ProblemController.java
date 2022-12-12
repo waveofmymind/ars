@@ -7,6 +7,7 @@ import juun.ars.dto.ProblemRequestDto;
 import juun.ars.mapper.ProblemMapper;
 import juun.ars.repository.ProblemRepository;
 import juun.ars.service.ProblemService;
+import juun.ars.utils.MemberContext;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

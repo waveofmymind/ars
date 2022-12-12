@@ -22,3 +22,5 @@ logging:
     user:
       name: user
       password: 1234
+  profiles:
+    include: oauth
