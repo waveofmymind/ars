@@ -1,8 +1,6 @@
 package juun.ars.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -11,12 +9,15 @@ import javax.persistence.*;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
+@Setter
 public class Problem {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name= "problem_id")
     private Long id;
 
-    private Long title;
+    private String title;
 
     @ManyToOne
     @JoinColumn(name="member_id")
