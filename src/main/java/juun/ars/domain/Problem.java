@@ -11,15 +11,15 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Builder
 @Setter
-public class Problem {
+public class Problem extends BaseEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name= "problem_id")
+    @Column(name = "problem_id")
     private Long id;
 
     private String title;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="member_id")
     private Member writer;
 
