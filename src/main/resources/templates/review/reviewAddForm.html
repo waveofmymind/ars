@@ -39,28 +39,28 @@
 </head>
 <body class="text-center">
 <main class="form-signin">
-<form action="problemRegister.html" th:action method="post">
+  <form action="reviewAddForm.html" th:action method="post">
 
-  <!--    <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">-->
-  <h1 class="h3 mb-3 fw-normal">해결한 문제를 등록하세요.</h1>
+    <!--    <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">-->
+    <h1 class="h3 mb-3 fw-normal">해결한 문제를 등록하세요.</h1>
 
-  <div class="form-floating">
-    <input type="text" class="form-control" id="title" name="title" placeholder="title">
-    <label for="title">title</label>
-  </div>
-  <div class="form-floating">
-    <input type="text" class="form-control" id="link" name="link" placeholder="link">
-    <label for="link">link</label>
-  </div>
-  <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-  <button class="w-100 btn btn-secondary btn-lg"
-          onclick="location.href='problemList.html'"
-          th:onclick="|location.href='@{/problem/problemList}'|"
-          type="button">취소</button>
-  <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
+    <div class="form-floating">
+      <input type="text" class="form-control" id="title" name="title" placeholder="title">
+      <label for="title">title</label>
+    </div>
+    <div class="form-floating">
+      <input type="text" class="form-control" id="content" name="content" placeholder="content">
+      <label for="content">content</label>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+    <button class="w-100 btn btn-secondary btn-lg"
+            onclick="location.href='reviewList.html'"
+            th:onclick="|location.href='@{/reviews}'|"
+            type="button">취소</button>
+    <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
 
 
-</form>
+  </form>
 
 </main>
 

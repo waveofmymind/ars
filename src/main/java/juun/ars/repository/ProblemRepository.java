@@ -7,4 +7,6 @@ import org.springframework.data.repository.NoRepositoryBean;
 
 
 public interface ProblemRepository extends JpaRepository<Problem,Long> {
+
+
 }
