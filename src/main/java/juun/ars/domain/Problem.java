@@ -26,4 +26,5 @@ public class Problem extends BaseEntity {
     private String link;
 
     private int step;
+
 }
